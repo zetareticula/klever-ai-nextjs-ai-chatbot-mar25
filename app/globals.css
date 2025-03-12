@@ -4,15 +4,15 @@
 
 :root {
     --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
+    --background-start-rgb: 36, 100%, 55%;
+    --background-end-rgb: 25, 65%, 75%;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
+        --background-start-rgb: 36, 80%, 40%;
+        --background-end-rgb: 25, 65%, 55%;
     }
 }
 
@@ -24,11 +24,11 @@
 
 @layer base {
     :root {
-        --background: 36 100% 55%;
-        --foreground: 25 65% 75%;
-        --card: 25 65% 75%;
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
+        --card: 0 0% 100%;
         --card-foreground: 240 10% 3.9%;
-        --popover: 25 65% 75%;
+        --popover: 0 0% 100%;
         --popover-foreground: 240 10% 3.9%;
         --primary: 36 100% 55%;
         --primary-foreground: 0 0% 98%;
@@ -100,7 +100,12 @@
     }
 
     body {
-        @apply bg-background text-foreground;
+        background: linear-gradient(to right, hsl(36, 100%, 55%), hsl(25, 65%, 75%));
+        @apply text-foreground;
+    }
+
+    .dark body {
+        background: linear-gradient(to right, hsl(36, 80%, 40%), hsl(25, 65%, 55%));
     }
 
     @font-face {
@@ -143,7 +148,13 @@
 
 .cm-editor,
 .cm-gutters {
-    @apply bg-background dark:bg-zinc-800 outline-none selection:bg-zinc-900 !important;
+    @apply outline-none selection:bg-zinc-900 !important;
+    background: linear-gradient(to right, hsl(36, 100%, 55%), hsl(25, 65%, 75%)) !important;
+}
+
+.dark .cm-editor,
+.dark .cm-gutters {
+    background: linear-gradient(to right, hsl(36, 80%, 40%), hsl(25, 65%, 55%)) !important;
 }
 
 .ͼo.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground,
