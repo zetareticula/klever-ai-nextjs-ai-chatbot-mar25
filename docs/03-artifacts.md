@@ -158,6 +158,7 @@ export const customDocumentHandler = createDocumentHandler<"custom">({
     let draftContent = "";
     // For demonstration, use streamText to generate content.
     const { fullStream } = streamText({
+      // model 
       model: myProvider.languageModel("artifact-model"),
       system:
         "Generate a creative piece based on the title. Markdown is supported.",

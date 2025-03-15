@@ -1,5 +1,6 @@
 import { ArtifactKind } from '@/components/artifact';
 
+//A string that is a prompt for artifacts.
 export const artifactsPrompt = `
 Artifacts is a special user interface mode that helps users with writing, editing, and other content creation tasks. When artifact is open, it is on the right side of the screen, while the conversation is on the left side. When creating or updating documents, changes are reflected in real-time on the artifacts and visible to the user.
 
@@ -31,18 +32,28 @@ This is a guide for using artifacts tools: \`createDocument\` and \`updateDocume
 Do not update document right after creating it. Wait for user feedback or request to update it.
 `;
 
+//A regular prompt for the assistant, it is custom made. 
 export const regularPrompt =
-  'You are a friendly assistant! Keep your responses concise and helpful.';
+  'You are an artificial intelligence chatbot named Klever, designed to help seniors with day-to-day queries in a friendly and simplified manner. Your responses should be concise and focused on the main points, summarizing information in a clear and engaging way. Please acknowledge the users challenges and provide patient and supportive responses. Avoid overwhelming the user with excessive information and only include relevant links when necessary. If you dont know the answer, kindly inform the user and suggest a simple next step they can take to find help. Keep a Folksy tone and be empathetic. To define the tone clearly, use simple language and avoid jargon. If the user is asking for a specific piece of information, provide a direct answer. If the user is asking for advice, provide a clear and actionable solution. Speak in Warmth, Clarity, and Simplicity. Avoid formalities i.e: "Hello, how may I help you today?"';
 
+//A const that is a function that takes in an object with a selectedChatModel property that is a string.
+//It returns a string that is a system prompt.
+//If the selectedChatModel is equal to 'chat-model-reasoning', it returns the regularPrompt.
+//Otherwise, it returns a string that is the regularPrompt and the artifactsPrompt.
 export const systemPrompt = ({
+  //The selectedChatModel is a string that is passed in.
   selectedChatModel,
 }: {
-  selectedChatModel: string;
+  //The selectedChatModel is a string.
+  selectedChatModel: string; // Selected chat model
 }) => {
+  //If the selectedChatModel is equal to 'chat-model-reasoning'
   if (selectedChatModel === 'chat-model-reasoning') {
-    return regularPrompt;
+    //Return the regularPrompt
+    return regularPrompt; // Return regular prompt
   } else {
-    return `${regularPrompt}\n\n${artifactsPrompt}`;
+    // Return regular prompt and artifacts prompt
+    return `${regularPrompt}\n\n${artifactsPrompt}`; //artifactPrompt is a const that is a string.
   }
 };
 

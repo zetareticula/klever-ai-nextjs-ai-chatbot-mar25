@@ -14,6 +14,8 @@ import { VisibilityType } from './visibility-selector';
 import { useArtifactSelector } from '@/hooks/use-artifact';
 import { toast } from 'sonner';
 
+//Chat component is a wrapper for the chat header, messages, and input components.
+//It also fetches votes from the server and renders the artifact component.
 export function Chat({
   id,
   initialMessages,
@@ -23,12 +25,14 @@ export function Chat({
 }: {
   id: string;
   initialMessages: Array<Message>;
-  selectedChatModel: string;
+  selectedModel: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
 }) {
   const { mutate } = useSWRConfig();
 
+  //use is a custom hook that manages the chat state and sends messages to the server.
+  //It returns the chat messages, a function to set the messages, a function to handle form submission,
   const {
     messages,
     setMessages,
@@ -54,11 +58,15 @@ export function Chat({
     },
   });
 
+  //useSWR is a React hook for data fetching.
+  //It returns the votes for the chat.
   const { data: votes } = useSWR<Array<Vote>>(
     `/api/vote?chatId=${id}`,
     fetcher,
   );
 
+  //useState is a React hook that manages state. It returns the attachments for the chat.
+  //It also returns a boolean that determines if the artifact is visible.
   const [attachments, setAttachments] = useState<Array<Attachment>>([]);
   const isArtifactVisible = useArtifactSelector((state) => state.isVisible);
 
